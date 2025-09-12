@@ -1,16 +1,20 @@
 pipeline {
     agent any
-
     stages {
-        stage('Checkout') {
+        stage('Build') {
             steps {
                 git 'https://github.com/prasadbeedam/devops-task.git'
+                sh "git checkout dev"
             }
         }
-
-        stage('Build Docker Image') {
+        stage('Test') {
             steps {
-                sh "docker build -t log-server-app:latest ."
+                //
+            }
+        }
+        stage('Deploy') {
+            steps {
+                //
             }
         }
     }
