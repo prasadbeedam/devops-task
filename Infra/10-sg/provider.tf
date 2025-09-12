@@ -6,10 +6,10 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "prasad-terraform-remote-state"
-    key    = "expense-dev-vpc"
+    bucket = "logo-server-terraform-remote-state"
+    key    = "logo-server-dev-sg"
     region = "us-east-1"
-    dynamodb_table = "eks-infra-locking"
+    dynamodb_table = "logo-server-infra-locking"
   }
 }
 

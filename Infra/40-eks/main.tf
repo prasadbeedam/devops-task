@@ -41,9 +41,9 @@ module "eks" {
 
   eks_managed_node_groups = {
     blue = {
-      min_size      = 2
-      max_size      = 10
-      desired_size  = 2
+      min_size      = 1
+      max_size      = 2
+      desired_size  = 1
       capacity_type = "SPOT"
       iam_role_additional_policies = {
         AmazonEBSCSIDriverPolicy          = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"

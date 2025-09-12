@@ -77,8 +77,8 @@ resource "aws_lb_listener_rule" "frontend" {
 
   condition {
     host_header {
-      # expense-dev.prasadbeedam.shop  --> frontend pod
-      values = ["expense-${var.environment}.${var.zone_name}"]
+      # logo-server-dev.prasadbeedam.shop  --> frontend pod
+      values = ["logo-server-${var.environment}.${var.zone_name}"]
     }
   }
 }
@@ -94,7 +94,7 @@ module "records" {
   
   records = [
     {
-      name    = "expense-${var.environment}"
+      name    = "logo-server-${var.environment}"
       type    = "A"
       allow_overwrite = true
       alias   = {
