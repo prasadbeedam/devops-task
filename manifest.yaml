@@ -1,33 +1,68 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: ConfigMap
 metadata:
-  name: logo-server-deployment
+  name: logo
   namespace: logo-server
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: logo
+  namespace: logo-server
+  # these labels are deployment related labels
+  labels:
+    component: logo
+    project: logo-server
+    tier: web
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: logo-server
+      component: logo
+      project: logo-server
+      tier: web
+  # pod definition
   template:
     metadata:
       labels:
-        app: logo-server
+        component: logo
+        project: logo-server
+        tier: web
     spec:
       containers:
-      - name: logo-server-container
+      - name: logo
         image: prasadyadav99/logo-server:1.0.0
-        ports:
-        - containerPort: 8080
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "150m"
+            memory: "256Mi"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: logo-server-service
+  name: logo
   namespace: logo-server
 spec:
-  type: LoadBalancer
+  #type: LoadBalancer
   selector:
-    app: logo-server
+    component: logo
+    project: logo-server
+    tier: web
   ports:
-    - port: 3000
-      targetPort: 3000
+  - protocol: TCP
+    port: 80 #service-port
+    targetPort: 3000 #target-port
+---
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
+metadata:
+  name: logo
+  namespace: logo-server
+spec:
+  serviceRef:
+    name: logo # route traffic to the awesome-service
+    port: 80
+  targetGroupARN: arn:aws:elasticloadbalancing:us-east-1:601326495385:targetgroup/logo-server-dev-frontend/c2e26fe4be45cbf8
