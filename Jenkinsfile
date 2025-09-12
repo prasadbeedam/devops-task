@@ -68,6 +68,7 @@ pipeline {
             steps {
                 echo "🚀 Deploying version ${env.APP_VERSION} to cluster"
                 sh """
+                export PATH=/usr/local/bin:$PATH
                 export KUBECONFIG=${KUBECONFIG}
                 kubectl version --client
                 kubectl apply -f manifest.yaml
