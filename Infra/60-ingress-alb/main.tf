@@ -52,13 +52,13 @@ resource "aws_lb_listener" "https" {
 
 resource "aws_lb_target_group" "frontend" {
   name     = "${var.project_name}-${var.environment}-frontend"
-  port     = 8080
+  port     = 3000
   protocol = "HTTP"
   target_type = "ip"
   vpc_id   = data.aws_ssm_parameter.vpc_id.value
   health_check {
     path                = "/"
-    port                = 8080
+    port                = 3000
     protocol            = "HTTP"
     healthy_threshold   = 2
     unhealthy_threshold = 2

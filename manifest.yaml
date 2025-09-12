@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: logo-server-container
-        image: prasadyadav99/logo-server-app:1.0.0
+        image: prasadyadav99/logo-server:1.0.0
         ports:
         - containerPort: 8080
 ---
