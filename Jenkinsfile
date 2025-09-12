@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_USER = 'prasadyadav99'
         IMAGE_NAME = 'logo-server'
+        KUBECONFIG = "/home/ec2-user/.kube/config"
     }
 
     stages {
@@ -34,7 +35,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo "✅ Running tests for version ${env.APP_VERSION}..."
-                // Optional: run tests, e.g., sh "npm test"
+                // Optional: sh "npm test"
             }
         }
 
@@ -66,7 +67,11 @@ pipeline {
         stage('Deploy to Kubernetes') {
             steps {
                 echo "🚀 Deploying version ${env.APP_VERSION} to cluster"
-                sh "kubectl apply -f manifest.yaml"
+                sh """
+                export KUBECONFIG=${KUBECONFIG}
+                kubectl version --client
+                kubectl apply -f manifest.yaml
+                """
             }
         }
     }
