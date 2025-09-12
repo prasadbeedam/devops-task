@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
         stage('Build') {
             steps {
@@ -7,14 +8,16 @@ pipeline {
                 sh "git checkout dev"
             }
         }
+
         stage('Test') {
             steps {
-                //
+                echo '✅ Running tests...'
             }
         }
+
         stage('Deploy') {
             steps {
-                //
+                echo '🚀 Deploying...'
             }
         }
     }
