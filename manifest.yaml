@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logo-server-deployment
+  namespace: logo-server
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: logo-server
+  template:
+    metadata:
+      labels:
+        app: logo-server
+    spec:
+      containers:
+      - name: logo-server-container
+        image: prasadyadav99/logo-server-app:1.0.0
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: logo-server-service
+  namespace: logo-server
+spec:
+  type: LoadBalancer
+  selector:
+    app: logo-server
+  ports:
+    - port: 3000
+      targetPort: 3000

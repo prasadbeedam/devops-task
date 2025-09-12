@@ -1,5 +1,5 @@
 variable "project_name" {
-  default = "expense"
+  default = "logo-server"
 }
 
 variable "environment" {
@@ -8,7 +8,7 @@ variable "environment" {
 
 variable "common_tags" {
   default = {
-    Project = "expense"
+    Project = "logo-server"
     Environment = "dev"
     Terraform = "true"
     Component = "ingress-alb"
@@ -20,5 +20,5 @@ variable "zone_name" {
 }
 
 variable "zone_id" {
-  default = "Z09605221F3CC18W1YD8H"
+  default = "Z0076662RSBAVK1BRCBD"
 }

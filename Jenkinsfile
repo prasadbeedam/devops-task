@@ -57,6 +57,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo "🚀 Deploying version ${env.APP_VERSION}..."
+
+                
             }
         }
     }
