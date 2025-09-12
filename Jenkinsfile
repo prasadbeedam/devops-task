@@ -17,10 +17,9 @@ pipeline {
             steps {
                 script {
                     def packageJson = readJSON file: 'package.json'
-                    def appVersion = packageJson.version
-                    echo "📦 Application version: ${appVersion}"
-                    env.APP_VERSION = appVersion
+                    env.APP_VERSION = packageJson.version
                     env.FULL_IMAGE_NAME = "${DOCKERHUB_USER}/${IMAGE_NAME}:${APP_VERSION}"
+                    echo "📦 Application version: ${env.APP_VERSION}"
                 }
             }
         }
@@ -35,7 +34,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo "✅ Running tests for version ${env.APP_VERSION}..."
-                // optional: run container or npm test
+                // Optional: run tests, e.g., sh "npm test"
             }
         }
 
@@ -54,11 +53,20 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
+        stage('Update manifest.yaml') {
             steps {
-                echo "🚀 Deploying version ${env.APP_VERSION}..."
+                echo "📝 Updating manifest.yaml with new image: ${env.FULL_IMAGE_NAME}"
+                sh """
+                sed -i 's|image: .*|image: ${FULL_IMAGE_NAME}|g' manifest.yaml
+                cat manifest.yaml
+                """
+            }
+        }
 
-                
+        stage('Deploy to Kubernetes') {
+            steps {
+                echo "🚀 Deploying version ${env.APP_VERSION} to cluster"
+                sh "kubectl apply -f manifest.yaml"
             }
         }
     }
