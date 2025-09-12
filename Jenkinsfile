@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/prasadbeedam/devops-task.git'
-                sh "git checkout dev"
+                git branch: 'dev', url: 'https://github.com/prasadbeedam/devops-task.git'
             }
         }
 
