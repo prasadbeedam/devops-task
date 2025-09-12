@@ -5,7 +5,7 @@ RUN addgroup -S logoserver && adduser -S logoserver -G logoserver \
     && chown logoserver:logoserver -R /opt/server
 WORKDIR /opt/server
 COPY package.json .
-COPY *.js /opt/server/
+COPY . /opt/server/
 RUN npm install
 USER logoserver
 CMD [ "node","app.js" ]
