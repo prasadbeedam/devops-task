@@ -97,6 +97,20 @@ when ever code push to the branch pipeline will trigger
 ```
 
 
+Pipeline
+
+
+```
+devops-task/pipelineconfig.png
+
+
+
+
+
+
+```
+
+
 
 
 
