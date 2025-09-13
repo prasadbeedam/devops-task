@@ -114,8 +114,7 @@ Pipeline
 ```
 Result
 ```
-
-Result.png
+devops-task\Result.png
 
 
 
