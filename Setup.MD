@@ -1,4 +1,4 @@
-Frist i created infracture (You can find in infra path)
+Frist i created infrastructure (You can find in infra path)
 
 ```
 after infra creation 
@@ -62,10 +62,42 @@ helm repo add eks https://aws.github.io/eks-charts
 helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n kube-system --set clusterName=<cluster-name> --set serviceAccount.create=false --set serviceAccount.name=aws-load-balancer-controller
 ```
 
-* check aws-load-balancer-controller is running in kube-system namespace.
+* check aws-load-balancer-controller is running in kube-system namespace.We should get
 ```
 kubectl get pods -n kube-system
 ```
+![alt text](ingresscontroller.png)
+
+```
+After This we have created alb rule whenever user hits https://logo-server-dev.prasadbeedam.shop/ traffic send to ingress 
+```
+User → Domain (Route53) → Ingress Controller → Service → Pod
+
+![alt text](r53.png)
+
+![alt text](lb.png)
+
+![alt text](LBrule.png)
+
+![alt text](targetgroup.png)
+
+
+```
+then i created Manifestfile
+
+```
+
+Next I ran Jenkins file and configured webhooks
+
+![alt text](webhook.png)
+
+```
+when ever code push to the branch pipeline will trigger
+
+```
+
+
+
 
 
 
