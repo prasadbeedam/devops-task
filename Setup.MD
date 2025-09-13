@@ -1,8 +1,8 @@
 Frist i created infracture (You can find in infra path)
 
-'''
-
+```
 after infra creation 
+```
 
 ### Admin activities
 
