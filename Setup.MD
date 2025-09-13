@@ -78,7 +78,7 @@ After This we have created alb rule whenever user hits https://logo-server-dev.p
 ```
 User → Domain (Route53) → Ingress Controller → Service → Pod
 
-```
+
 
 ![alt text](r53.png)
 
@@ -94,7 +94,8 @@ then i created Manifestfile
 
 ```
 Next I ran Jenkins file and configured webhooks
-```
+
+
 
 ![alt text](webhook.png)
 
@@ -103,7 +104,6 @@ when ever code push to the branch pipeline will trigger
 
 ```
 Pipeline
-```
 
 ![alt text](pipelineconfig.png)
 
@@ -113,9 +113,15 @@ Pipeline
 
 ```
 Result
-```
+------
 
 ![alt text](Result.png)
+
+
+
+
+
+
 
 
 
