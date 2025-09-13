@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_USER = 'prasadyadav99'
         IMAGE_NAME = 'logo-server'
-        KUBECONFIG = "/home/ec2-user/.kube/config"
+        KUBECONFIG = "/var/lib/jenkins/.kube/config"
     }
 
     stages {
