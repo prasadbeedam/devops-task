@@ -1,7 +1,13 @@
 Frist i created infrastructure (You can find in infra path)
 
-```
+![alt text](vpc.png)
+
+![alt text](instances.png)
+
+
 after infra creation 
+
+
 ```
 
 ### Admin activities
