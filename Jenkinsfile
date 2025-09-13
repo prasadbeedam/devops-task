@@ -66,13 +66,28 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                echo "🚀 Deploying version ${env.APP_VERSION} to cluster"
-                sh """
-                export PATH=/usr/local/bin:$PATH
-                export KUBECONFIG=${KUBECONFIG}
-                kubectl version --client
-                kubectl apply -f manifest.yaml
-                """
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-creds']]) {
+                    script {
+                        // Fetch cluster name dynamically
+                        def clusterName = sh(
+                            script: "aws eks list-clusters --region us-east-1 --query 'clusters[0]' --output text",
+                            returnStdout: true
+                        ).trim()
+
+                        echo "🌐 Using EKS cluster: ${clusterName}"
+
+                        sh """
+                        export PATH=/usr/local/bin:$PATH
+                        export KUBECONFIG=${KUBECONFIG}
+
+                        # Update kubeconfig for detected cluster
+                        aws eks update-kubeconfig --region us-east-1 --name ${clusterName} --kubeconfig ${KUBECONFIG}
+
+                        kubectl version --client
+                        kubectl apply -f manifest.yaml
+                        """
+                    }
+                }
             }
         }
     }
