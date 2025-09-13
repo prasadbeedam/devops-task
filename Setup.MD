@@ -99,16 +99,20 @@ when ever code push to the branch pipeline will trigger
 
 Pipeline
 
-
-```
-devops-task/pipelineconfig.png
+![alt text](pipelineconfig.png)
 
 
-
-
+![alt text](Pipelinestatus.png)
 
 
 ```
+Result
+
+![alt text](Result.png)
+
+
+
+
 
 
 
