@@ -8,7 +8,7 @@ The app is available here: 👉 https://logo-server-dev.prasadbeedam.shop/
 
 🏗️ Architecture
 
-![alt text](infra.drawio-1.svg)
+![alt text](infra.drawio.svg)
 
 Here’s the breakdown:
 
