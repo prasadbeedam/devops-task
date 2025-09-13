@@ -19,6 +19,8 @@ aws configure
 * get the kubernetes config using below command
 ```
 aws eks update-kubeconfig --region us-east-1 --name <YOUR-CLUSTER-NAME>
+
+
 ```
 * Now you should be able to connect K8 cluster
 ```
@@ -32,15 +34,19 @@ Ref: https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.8/
 * Create an IAM OIDC provider. You can skip this step if you already have one for your cluster.
 ```
 eksctl utils associate-iam-oidc-provider --region us-east-1 --cluster <your-cluster-name> --approve
+
 ```
 * Download an IAM policy for the LBC using one of the following commands:
 ```
 curl -o iam-policy.json https://raw.githubusercontent.com/kubernetes-sigs aws-load-balancer-controller/v2.8.1/docs/install/iam_policy.json
+
+
 ```
 
 * Create an IAM policy named AWSLoadBalancerControllerIAMPolicy. If you downloaded a different policy, replace iam-policy with the name of the policy that you downloaded.
 ```
 aws iam create-policy --policy-name AWSLoadBalancerControllerIAMPolicy --policy-document file://iam-policy.json
+
 ```
 
 * Create a IAM role and ServiceAccount for the AWS Load Balancer controller, use the ARN from the step above
@@ -71,6 +77,15 @@ helm install aws-load-balancer-controller eks/aws-load-balancer-controller -n ku
 kubectl get pods -n kube-system
 ```
 ![alt text](ingresscontroller.png)
+
+```
+Create Name space in cluster
+```
+
+kubectl create namespace logo-server
+
+
+
 
 ```
 After This we have created alb rule whenever user hits https://logo-server-dev.prasadbeedam.shop/ traffic send to ingress 
