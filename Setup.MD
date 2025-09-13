@@ -74,6 +74,7 @@ kubectl get pods -n kube-system
 
 ```
 After This we have created alb rule whenever user hits https://logo-server-dev.prasadbeedam.shop/ traffic send to ingress 
+
 ```
 User → Domain (Route53) → Ingress Controller → Service → Pod
 
@@ -92,9 +93,7 @@ User → Domain (Route53) → Ingress Controller → Service → Pod
 then i created Manifestfile
 
 ```
-
 Next I ran Jenkins file and configured webhooks
-
 ```
 
 ![alt text](webhook.png)
@@ -103,20 +102,17 @@ Next I ran Jenkins file and configured webhooks
 when ever code push to the branch pipeline will trigger
 
 ```
-
-
 Pipeline
-
 ```
 
 ![alt text](pipelineconfig.png)
 
 
+
 ![alt text](Pipelinestatus.png)
 
-
+```
 Result
-
 ```
 
 
