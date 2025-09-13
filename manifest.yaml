@@ -23,6 +23,7 @@ spec:
         project: logo-server
         tier: web
     spec:
+      serviceAccountName: logo-sa
       containers:
       - name: logo
         image: prasadyadav99/logo-server:1.0.0
